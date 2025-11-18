@@ -39,7 +39,7 @@
 
     .btn-row{display:flex;gap:4px;margin-top:6px;}
     .btn-green{flex:1;padding:4px 6px;text-align:center;border-radius:6px;background:#005e4a;color:#fff;font-size:11px;font-weight:600;cursor:pointer;}
-    .btn-white{flex:1;padding:4px 6px;text-align:center;border-radius:6px;background:#fff;color:#005e4a;font-size:11px;font-weight:600;border:1px solid #005e4a;cursor:pointer;}
+    .btn-white{flex:1;padding:4px 6px;text-align:center;border-radius:6px;background:#fff;color:#005e4a;font-size:11px;font-weight:600;border:1px solid #005e4a;cursor:pointer;display:inline-block;}
     .btn-white:hover{background:#dff6f0;}
 
     /* SHOW DROPDOWN ONLY ON HOVER */
@@ -59,7 +59,7 @@
       </div>
     </div>
     <nav class="nav-links">
-      <a href="index.html">Home</a>
+      <a href="Home.html">Home</a>
       <a href="Applications.html">Applications</a>
       <a href="Services.html">Services</a>
 
@@ -114,87 +114,122 @@
         <option value="100000-999999">$100,000+</option>
       </select>
     </div>
+    <div>
+      <label style="font-size:14px; font-weight:600;">Mileage:</label>
+      <select id="mileageFilter" onchange="applyFilters()" style="padding:6px 10px; border-radius:6px; border:1px solid #ccc; font-size:14px;">
+        <option value="all">All</option>
+        <option value="0-250000">0 – 250,000</option>
+        <option value="250000-500000">250,000 – 500,000</option>
+        <option value="500000-750000">500,000 – 750,000</option>
+        <option value="750000-1000000">750,000 – 1,000,000</option>
+        <option value="1000000-9999999">1,000,000+</option>
+      </select>
+    </div>
+    <div>
+      <label style="font-size:14px; font-weight:600;">Color:</label>
+      <select id="colorFilter" onchange="applyFilters()" style="padding:6px 10px; border-radius:6px; border:1px solid #ccc; font-size:14px;">
+        <option value="all">All</option>
+        <option value="White">White</option>
+        <option value="Red">Red</option>
+        <option value="Blue">Blue</option>
+        <option value="Black">Black</option>
+        <option value="Other">Other</option>
+        <option value="Unknown">Unknown</option>
+      </select>
+    </div>
+    <div>
+      <label style="font-size:14px; font-weight:600;">Location State:</label>
+      <select id="stateFilter" onchange="applyFilters()" style="padding:6px 10px; border-radius:6px; border:1px solid #ccc; font-size:14px;">
+        <option value="all">All</option>
+        <option value="NY">NY</option>
+        <option value="NJ">NJ</option>
+        <option value="PA">PA</option>
+        <option value="TX">TX</option>
+        <option value="CA">CA</option>
+        <option value="Other">Other</option>
+        <option value="Unknown">Unknown</option>
+      </select>
+    </div>
   </div>
 
   <div class="grid">
 
-    <!-- START INVENTORY CARDS (sample from your list, all wired to filters) -->
+    <!-- INVENTORY CARDS (Freightliner sample etc.) -->
 
     <!-- Freightliner -->
-    <div class="unit-card" data-type="Truck"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2020 Freightliner Cascadia PT126SLP</div><div class="unit-info">VIN: 1FUJHHDR1LLKS7083<br>Mileage: 729771<br>Value: 38386</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="1FUJHHDR1LLKS7083.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2020 Freightliner Cascadia PT126SLP</div><div class="unit-info">VIN: 1FUJHHDR1LLXXXXXX<br>Mileage: 729771<br>Value: 38386</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
-    <div class="unit-card" data-type="Truck"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2019 Freightliner Cascadia PT126SLP</div><div class="unit-info">VIN: 1FUJHHDR2KLKM3646<br>Mileage: 732806<br>Value: 25864</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2019 Freightliner Cascadia PT126SLP</div><div class="unit-info">VIN: 1FUJHHDR2KLXXXXXX<br>Mileage: 732806<br>Value: 25864</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
-    <div class="unit-card" data-type="Truck"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2020 Freightliner Cascadia PT126SLP</div><div class="unit-info">VIN: 1FUJHHDR2LLKS3768<br>Mileage: 777777<br>Value: 37080</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2020 Freightliner Cascadia PT126SLP</div><div class="unit-info">VIN: 1FUJHHDR2LLXXXXXX<br>Mileage: 777777<br>Value: 37080</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
-    <div class="unit-card" data-type="Truck"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2019 Freightliner Cascadia PT126SLP</div><div class="unit-info">VIN: 1FUJHHDR4KLKC2700<br>Mileage: 644939<br>Value: 35830</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2019 Freightliner Cascadia PT126SLP</div><div class="unit-info">VIN: 1FUJHHDR4KLXXXXXX<br>Mileage: 644939<br>Value: 35830</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
-    <div class="unit-card" data-type="Truck"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2020 Freightliner Cascadia PT126SLP</div><div class="unit-info">VIN: 1FUJHHDR4LLLR3999<br>Mileage: 530288<br>Value: 52902</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2020 Freightliner Cascadia PT126SLP</div><div class="unit-info">VIN: 1FUJHHDR4LLXXXXXX<br>Mileage: 530288<br>Value: 52902</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
-    <div class="unit-card" data-type="Truck"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2020 Freightliner Cascadia PT126SLP</div><div class="unit-info">VIN: 1FUJHHDR7LLKS3670<br>Mileage: 777777<br>Value: 34900</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2020 Freightliner Cascadia PT126SLP</div><div class="unit-info">VIN: 1FUJHHDR7LLXXXXXX<br>Mileage: 777777<br>Value: 34900</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
-    <div class="unit-card" data-type="Truck"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2020 Freightliner Cascadia PT126SLP</div><div class="unit-info">VIN: 1FUJHHDR8LLKS3791<br>Mileage: 777777<br>Value: 23249</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2020 Freightliner Cascadia PT126SLP</div><div class="unit-info">VIN: 1FUJHHDR8LLXXXXXX<br>Mileage: 777777<br>Value: 23249</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
-    <div class="unit-card" data-type="Truck"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2019 Freightliner Cascadia PT126SLP</div><div class="unit-info">VIN: 1FUJHHDR9KLKP1105<br>Mileage: 414073<br>Value: 55052</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2019 Freightliner Cascadia PT126SLP</div><div class="unit-info">VIN: 1FUJHHDR9KLXXXXXX<br>Mileage: 414073<br>Value: 55052</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
-    <div class="unit-card" data-type="Truck"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2023 Freightliner Cascadia PT126SLP</div><div class="unit-info">VIN: 1FUJHHDR9PLNG6305<br>Mileage: 261318<br>Value: 98510</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2023 Freightliner Cascadia PT126SLP</div><div class="unit-info">VIN: 1FUJHHDR9PLXXXXXX<br>Mileage: 261318<br>Value: 98510</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
-    <div class="unit-card" data-type="Truck"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2020 Freightliner Cascadia PT126SLP</div><div class="unit-info">VIN: 1FUJHHDRXLLKS3663<br>Mileage: 483941<br>Value: 50500</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2020 Freightliner Cascadia PT126SLP</div><div class="unit-info">VIN: 1FUJHHDRXLLXXXXXX<br>Mileage: 483941<br>Value: 50500</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
     <!-- Trailers -->
-    <div class="unit-card" data-type="Trailer"><img src="https://i.imgur.com/t7gVh7M.jpeg"/><div class="unit-body"><div class="unit-title">2016 Utility Reefer Thermo King S600</div><div class="unit-info">VIN: 1UYVS2531GU539035<br>Mileage: 777777<br>Value: 14940</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Trailer" data-color="Unknown" data-state="Unknown"><img src="https://i.imgur.com/t7gVh7M.jpeg"/><div class="unit-body"><div class="unit-title">2016 Utility Reefer Thermo King S600</div><div class="unit-info">VIN: 1UYVS2531GUXXXXXX<br>Mileage: 777777<br>Value: 14940</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
-    <div class="unit-card" data-type="Trailer"><img src="https://i.imgur.com/t7gVh7M.jpeg"/><div class="unit-body"><div class="unit-title">2016 Utility 53' Refrigerated</div><div class="unit-info">VIN: 1UYVS253XGM492717<br>Mileage: 777777<br>Value: 9798</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Trailer" data-color="Unknown" data-state="Unknown"><img src="https://i.imgur.com/t7gVh7M.jpeg"/><div class="unit-body"><div class="unit-title">2016 Utility 53' Refrigerated</div><div class="unit-info">VIN: 1UYVS253XGMXXXXXX<br>Mileage: 777777<br>Value: 9798</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
     <!-- Kenworth (sample) -->
-    <div class="unit-card" data-type="Truck"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2019 Kenworth T680 Sleeper Truck</div><div class="unit-info">VIN: 1XKYD49X2KJ257399<br>Mileage: 576017<br>Value: 38462</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2019 Kenworth T680 Sleeper Truck</div><div class="unit-info">VIN: 1XKYD49X2KJXXXXXX<br>Mileage: 576017<br>Value: 38462</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
-    <div class="unit-card" data-type="Truck"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2020 Kenworth T680 Sleeper Truck</div><div class="unit-info">VIN: 1XKYD49X2LJ225649<br>Mileage: 591439<br>Value: 0</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2020 Kenworth T680 Sleeper Truck</div><div class="unit-info">VIN: 1XKYD49X2LJXXXXXX<br>Mileage: 591439<br>Value: 0</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
-    <div class="unit-card" data-type="Truck"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2017 Kenworth T680 Sleeper Truck</div><div class="unit-info">VIN: 1XKYD49X3HJ108461<br>Mileage: 520986<br>Value: 36257</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2017 Kenworth T680 Sleeper Truck</div><div class="unit-info">VIN: 1XKYD49X3HJXXXXXX<br>Mileage: 520986<br>Value: 36257</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
-    <div class="unit-card" data-type="Truck"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2019 Kenworth T680 Sleeper Truck</div><div class="unit-info">VIN: 1XKYD49X8KJ241126<br>Mileage: 579704<br>Value: 40015</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg"/><div class="unit-body"><div class="unit-title">2019 Kenworth T680 Sleeper Truck</div><div class="unit-info">VIN: 1XKYD49X8KJXXXXXX<br>Mileage: 579704<br>Value: 40015</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
     <!-- ADDED MISSING LISTINGS -->
 
     <!-- Kenworth Remaining -->
-    <div class="unit-card" data-type="Truck"><img src="https://i.imgur.com/Dh3CMxP.jpeg"/><div class="unit-body"><div class="unit-title">2019 Kenworth T680 Sleeper Truck</div><div class="unit-info">VIN: 1XKYD49X9KJ238820<br>Mileage: 734608<br>Value: 33692</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://i.imgur.com/Dh3CMxP.jpeg"/><div class="unit-body"><div class="unit-title">2019 Kenworth T680 Sleeper Truck</div><div class="unit-info">VIN: 1XKYD49X9KJXXXXXX<br>Mileage: 734608<br>Value: 33692</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
-    <div class="unit-card" data-type="Truck"><img src="https://i.imgur.com/Dh3CMxP.jpeg"/><div class="unit-body"><div class="unit-title">2018 Kenworth T680 Tractor</div><div class="unit-info">VIN: 1XKYD49XXJJ197550<br>Mileage: 475467<br>Value: 44600</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://i.imgur.com/Dh3CMxP.jpeg"/><div class="unit-body"><div class="unit-title">2018 Kenworth T680 Tractor</div><div class="unit-info">VIN: 1XKYD49XXJJXXXXXX<br>Mileage: 475467<br>Value: 44600</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
-    <div class="unit-card" data-type="Truck"><img src="https://i.imgur.com/Dh3CMxP.jpeg"/><div class="unit-body"><div class="unit-title">2022 Kenworth T680 Sleeper Truck</div><div class="unit-info">VIN: 1XKYD49XXNJ171889<br>Mileage: 605503<br>Value: 48279</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://i.imgur.com/Dh3CMxP.jpeg"/><div class="unit-body"><div class="unit-title">2022 Kenworth T680 Sleeper Truck</div><div class="unit-info">VIN: 1XKYD49XXNJXXXXXX<br>Mileage: 605503<br>Value: 48279</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
-    <div class="unit-card" data-type="Truck"><img src="https://i.imgur.com/Dh3CMxP.jpeg"/><div class="unit-body"><div class="unit-title">2023 Kenworth T680 Sleeper Truck</div><div class="unit-info">VIN: 1XKYD49XXPJ217384<br>Mileage: 391809<br>Value: 79484</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://i.imgur.com/Dh3CMxP.jpeg"/><div class="unit-body"><div class="unit-title">2023 Kenworth T680 Sleeper Truck</div><div class="unit-info">VIN: 1XKYD49XXPJXXXXXX<br>Mileage: 391809<br>Value: 79484</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
-    <div class="unit-card" data-type="Truck"><img src="https://i.imgur.com/Dh3CMxP.jpeg"/><div class="unit-body"><div class="unit-title">2017 Kenworth T680 Sleeper Truck</div><div class="unit-info">VIN: 1XKYDB9X8HJ144003<br>Mileage: 458000<br>Value: 33684</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://i.imgur.com/Dh3CMxP.jpeg"/><div class="unit-body"><div class="unit-title">2017 Kenworth T680 Sleeper Truck</div><div class="unit-info">VIN: 1XKYDB9X8HJXXXXXX<br>Mileage: 458000<br>Value: 33684</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
-    <div class="unit-card" data-type="Truck"><img src="https://i.imgur.com/Dh3CMxP.jpeg"/><div class="unit-body"><div class="unit-title">2019 Kenworth T680 Sleeper Truck</div><div class="unit-info">VIN: 1XKYDP9X0KJ239128<br>Mileage: 604734<br>Value: 31483</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://i.imgur.com/Dh3CMxP.jpeg"/><div class="unit-body"><div class="unit-title">2019 Kenworth T680 Sleeper Truck</div><div class="unit-info">VIN: 1XKYDP9X0KJXXXXXX<br>Mileage: 604734<br>Value: 31483</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
-    <div class="unit-card" data-type="Truck"><img src="https://i.imgur.com/Dh3CMxP.jpeg"/><div class="unit-body"><div class="unit-title">2023 Kenworth T680 Sleeper Truck</div><div class="unit-info">VIN: 1XKYDP9X1PJ232308<br>Mileage: 464775<br>Value: 57095</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://i.imgur.com/Dh3CMxP.jpeg"/><div class="unit-body"><div class="unit-title">2023 Kenworth T680 Sleeper Truck</div><div class="unit-info">VIN: 1XKYDP9X1PJXXXXXX<br>Mileage: 464775<br>Value: 57095</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
-    <div class="unit-card" data-type="Truck"><img src="https://i.imgur.com/Dh3CMxP.jpeg"/><div class="unit-body"><div class="unit-title">2023 Kenworth T680 Sleeper Truck</div><div class="unit-info">VIN: 1XKYDP9X9PJ248336<br>Mileage: 181120<br>Value: 93255</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://i.imgur.com/Dh3CMxP.jpeg"/><div class="unit-body"><div class="unit-title">2023 Kenworth T680 Sleeper Truck</div><div class="unit-info">VIN: 1XKYDP9X9PJXXXXXX<br>Mileage: 181120<br>Value: 93255</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
-    <div class="unit-card" data-type="Truck"><img src="https://i.imgur.com/Dh3CMxP.jpeg"/><div class="unit-body"><div class="unit-title">2021 Kenworth T680 Sleeper Truck</div><div class="unit-info">VIN: 1XKZDP9XXMJ437920<br>Mileage: 219131<br>Value: 65355</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://i.imgur.com/Dh3CMxP.jpeg"/><div class="unit-body"><div class="unit-title">2021 Kenworth T680 Sleeper Truck</div><div class="unit-info">VIN: 1XKZDP9XXMJXXXXXX<br>Mileage: 219131<br>Value: 65355</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
     <!-- Peterbilt -->
-    <div class="unit-card" data-type="Truck"><img src="https://i.imgur.com/AGcLz1r.jpeg"/><div class="unit-body"><div class="unit-title">2020 Peterbilt 579 Sleeper Truck</div><div class="unit-info">VIN: 1XPBD49X7LD650846<br>Mileage: 513735<br>Value: 44112</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://i.imgur.com/AGcLz1r.jpeg"/><div class="unit-body"><div class="unit-title">2020 Peterbilt 579 Sleeper Truck</div><div class="unit-info">VIN: 1XPBD49X7LDXXXXXX<br>Mileage: 513735<br>Value: 44112</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
     <!-- Volvo -->
-    <div class="unit-card" data-type="Truck"><img src="https://i.imgur.com/FUf7yPs.jpeg"/><div class="unit-body"><div class="unit-title">2015 Volvo VNL670 Sleeper</div><div class="unit-info">VIN: 4N4NC9EH1FN912233<br>Mileage: 668220<br>Value: 23780</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://i.imgur.com/FUf7yPs.jpeg"/><div class="unit-body"><div class="unit-title">2015 Volvo VNL670 Sleeper</div><div class="unit-info">VIN: 4N4NC9EH1FNXXXXXX<br>Mileage: 668220<br>Value: 23780</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
-    <div class="unit-card" data-type="Truck"><img src="https://i.imgur.com/FUf7yPs.jpeg"/><div class="unit-body"><div class="unit-title">2020 Volvo VNL760 Sleeper</div><div class="unit-info">VIN: 4V4NC9EH6LN211389<br>Mileage: 937164<br>Value: 27972</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Truck" data-color="Unknown" data-state="Unknown"><img src="https://i.imgur.com/FUf7yPs.jpeg"/><div class="unit-body"><div class="unit-title">2020 Volvo VNL760 Sleeper</div><div class="unit-info">VIN: 4V4NC9EH6LNXXXXXX<br>Mileage: 937164<br>Value: 27972</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
     <!-- Vanguard Trailer -->
-    <div class="unit-card" data-type="Trailer"><img src="https://i.imgur.com/t7gVh7M.jpeg"/><div class="unit-body"><div class="unit-title">2018 Vanguard Reefer 53 Ft</div><div class="unit-info">VIN: 527SR5328JL012916<br>Mileage: 12725<br>Value: 24900</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Trailer" data-color="Unknown" data-state="Unknown"><img src="https://i.imgur.com/t7gVh7M.jpeg"/><div class="unit-body"><div class="unit-title">2018 Vanguard Reefer 53 Ft</div><div class="unit-info">VIN: 527SR5328JLXXXXXX<br>Mileage: 12725<br>Value: 24900</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
     <!-- Delucio Trailer -->
-    <div class="unit-card" data-type="Trailer"><img src="https://i.imgur.com/t7gVh7M.jpeg"/><div class="unit-body"><div class="unit-title">2023 Delucio USA DL5000 53' Dry Van</div><div class="unit-info">VIN: 7LVD5DD2XPD010865<br>Mileage: 777777<br>Value: 19705</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
+    <div class="unit-card" data-type="Trailer" data-color="Unknown" data-state="Unknown"><img src="https://i.imgur.com/t7gVh7M.jpeg"/><div class="unit-body"><div class="unit-title">2023 Delucio USA DL5000 53' Dry Van</div><div class="unit-info">VIN: 7LVD5DD2XPDXXXXXX<br>Mileage: 777777<br>Value: 19705</div><div class="btn-row"><div class="btn-green email-btn">Contact us</div><a class="btn-white" href="Unit details.html">See Details</a></div></div></div>
 
   </div>
 </main>
 
 <script>
-// Format mileage numbers with commas
 // Format value numbers as USD currency
 function formatValues() {
   var infos = document.querySelectorAll('.unit-info');
@@ -214,6 +249,8 @@ function formatValues() {
     info.innerHTML = parts.join('<br>');
   });
 }
+
+// Format mileage numbers with commas
 function formatMileage() {
   var infos = document.querySelectorAll('.unit-info');
   infos.forEach(function(info) {
@@ -233,17 +270,23 @@ function formatMileage() {
   });
 }
 
-// Filter cards by type, brand, and price
+// Filter cards by type, brand, price, mileage, color, and state
 function applyFilters() {
   var typeSel = document.getElementById('typeFilter').value;
   var brandSel = document.getElementById('brandFilter').value;
   var priceSel = document.getElementById('priceFilter').value;
+  var mileageSel = document.getElementById('mileageFilter') ? document.getElementById('mileageFilter').value : 'all';
+  var colorSel = document.getElementById('colorFilter') ? document.getElementById('colorFilter').value : 'all';
+  var stateSel = document.getElementById('stateFilter') ? document.getElementById('stateFilter').value : 'all';
   var cards = document.querySelectorAll('.unit-card');
 
   cards.forEach(function(card) {
     var visible = true;
 
     var unitType = card.getAttribute('data-type') || 'Truck';
+    var color = card.getAttribute('data-color') || 'Unknown';
+    var state = card.getAttribute('data-state') || 'Unknown';
+
     var titleEl = card.querySelector('.unit-title');
     var infoEl = card.querySelector('.unit-info');
 
@@ -252,6 +295,8 @@ function applyFilters() {
     var brand = titleParts.length > 1 ? titleParts[1] : '';
 
     var infoHtml = infoEl ? infoEl.innerHTML : '';
+
+    // Price parsing
     var price = 0;
     var valuePos = infoHtml.indexOf('Value:');
     if (valuePos !== -1) {
@@ -264,13 +309,29 @@ function applyFilters() {
       }
     }
 
+    // Mileage parsing
+    var mileage = 0;
+    var mileagePos = infoHtml.indexOf('Mileage:');
+    if (mileagePos !== -1) {
+      var mAfter = infoHtml.substring(mileagePos + 8).split('<')[0].trim();
+      mAfter = mAfter.split(',').join('');
+      var mParsed = parseInt(mAfter, 10);
+      if (!isNaN(mParsed)) {
+        mileage = mParsed;
+      }
+    }
+
+    // Type filter
     if (typeSel !== 'all' && unitType !== typeSel) {
       visible = false;
     }
+
+    // Brand filter
     if (brandSel !== 'all' && brand !== brandSel) {
       visible = false;
     }
 
+    // Price filter
     if (priceSel !== 'all') {
       var range = priceSel.split('-');
       var min = parseInt(range[0], 10);
@@ -278,6 +339,26 @@ function applyFilters() {
       if (price < min || price > max) {
         visible = false;
       }
+    }
+
+    // Mileage filter
+    if (mileageSel !== 'all') {
+      var mRange = mileageSel.split('-');
+      var mMin = parseInt(mRange[0], 10);
+      var mMax = parseInt(mRange[1], 10);
+      if (mileage < mMin || mileage > mMax) {
+        visible = false;
+      }
+    }
+
+    // Color filter
+    if (colorSel !== 'all' && color !== colorSel) {
+      visible = false;
+    }
+
+    // State filter
+    if (stateSel !== 'all' && state !== stateSel) {
+      visible = false;
     }
 
     card.style.display = visible ? 'flex' : 'none';
