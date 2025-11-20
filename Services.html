@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>M&T Equipment Funding LLC – Services</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Units for Sale – M&T Equipment Funding LLC</title>
+  <link rel="icon" href="https://i.imgur.com/kopRNDu.png" type="image/png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="inventory-seed.js"></script>
   <style>
     :root {
       --font-main: "Inter","Segoe UI",system-ui,-apple-system,sans-serif;
@@ -20,344 +22,670 @@
     img{max-width:100%;height:auto;display:block;}
 
     /* HEADER */
-    header { background:#ffffff; box-shadow:0 2px 6px rgba(0,0,0,.08); position:sticky; top:0; z-index:10; }
-    .nav { max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; padding:12px 20px; }
+    header{background:#ffffff;box-shadow:0 2px 6px rgba(0,0,0,.08);position:sticky;top:0;z-index:200;}
+    .nav{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;}
     .logo{display:flex;align-items:center;gap:10px;}
-    .logo img { height:72px; width:auto; object-fit:contain; }
-    .logo-mark{height:72px;width:auto;border-radius:0;object-fit:contain;}
+    .logo img{height:72px;width:auto;object-fit:contain;}
     .nav-links{display:flex;align-items:center;gap:18px;font-size:14px;}
-    .nav-links a{padding:6px 10px;border-radius:999px;white-space:nowrap;}
-    .nav-links a:hover{background:rgba(0,94,74,.08);}
-    .nav-links .active{background:#005e4a;color:#fff;}
-    .btn-small {
-      border-radius:999px;
-      border:1px solid #005e4a;
-      padding:10px 22px;
-      font-size:14px;
-      font-weight:600;
-      color:#005e4a;
-      background:#fff;
-      cursor:pointer;
-    }
-    .btn-small:hover { background:#005e4a; color:#fff; }
+    .nav-links a{padding:6px 10px;border-radius:999px;}
+    .nav-links a:hover{background:rgba(0,94,74,.08);} 
+    .active{background:#005e4a;color:#fff !important;}
 
-    main{max-width:1100px;margin:20px auto 40px;padding:0 20px 40px;}
-    .hero{background:#ffffff;border-radius:14px;padding:26px 24px 24px;box-shadow:0 8px 24px rgba(0,0,0,.06);display:flex;gap:26px;align-items:flex-start;flex-wrap:wrap;}
-    .hero-text{flex:1 1 260px;}
-    .hero-kicker{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#008060;margin-bottom:6px;}
-    .hero-title{font-size:24px;font-weight:800;margin-bottom:4px;color:#0b2520;}
-    .hero-sub{font-size:14px;color:#444;margin-bottom:14px;}
-    .hero-badges{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px;}
-    .badge{font-size:11px;background:#f0faf7;color:#005e4a;border-radius:999px;padding:6px 10px;border:1px solid rgba(0,94,74,.18);}
-    .hero-note{font-size:11px;color:#555;margin-top:6px;}
-    .hero-side{flex:0 0 260px;border-radius:12px;background:linear-gradient(135deg,#005e4a,#11a57f);color:#fff;padding:16px 16px 14px;display:flex;flex-direction:column;gap:8px;}
-    .hero-side h3{font-size:15px;margin-bottom:2px;}
-    .hero-side p{font-size:12px;opacity:.9;}
-    .hero-list{font-size:12px;margin:4px 0 4px 16px;}
-    .hero-list li{margin-bottom:2px;}
-    .hero-side-cta{font-size:12px;margin-top:4px;}
-    .hero-side-cta span{font-weight:700;}
-    .hero-side-tag{font-size:10px;opacity:.85;margin-top:4px;}
+    .btn-small{border-radius:999px;border:1px solid #005e4a;padding:6px 14px;font-size:13px;font-weight:600;color:#005e4a;background:#fff;cursor:pointer;}
+    .btn-small:hover{background:#005e4a;color:#fff;}
 
-    section{margin-top:28px;}
-    .section-title-row{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px;}
-    .section-title{font-size:17px;font-weight:700;color:#0b2520;}
-    .section-sub{font-size:12px;color:#555;}
-
-    .services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;}
-    .service-card{background:#ffffff;border-radius:12px;padding:14px 14px 12px;box-shadow:0 4px 12px rgba(0,0,0,.04);display:flex;flex-direction:column;gap:6px;border:1px solid #cfe7e2;}
-    .service-tag{font-size:10px;text-transform:uppercase;letter-spacing:.12em;color:#008060;font-weight:700;}
-    .service-title{font-size:14px;font-weight:700;color:#111;}
-    .service-text{font-size:12px;color:#555;}
-    .service-bullets{font-size:11px;margin-left:16px;margin-top:2px;color:#444;}
-    .service-bullets li{margin-bottom:2px;}
-    .pill-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px;}
-    .pill{font-size:10px;background:#f5fbfa;border-radius:999px;padding:4px 8px;border:1px solid #d0e7df;color:#444;}
-
-    .process-wrapper{background:#ffffff;border-radius:12px;padding:16px 14px 14px;box-shadow:0 4px 12px rgba(0,0,0,.04);border:1px solid #e3ece9;}
-    .steps-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;}
-    .step{flex:1 1 220px;border-radius:10px;border:1px dashed #c7ddd5;padding:10px 10px 9px;}
-    .step-head{display:flex;align-items:center;gap:8px;margin-bottom:4px;}
-    .step-num{width:20px;height:20px;border-radius:999px;background:#005e4a;color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;font-weight:700;}
-    .step-title{font-size:12px;font-weight:700;color:#0b2520;}
-    .step-text{font-size:11px;color:#555;}
-    .step-note{font-size:10px;color:#666;margin-top:4px;}
-
-    .cta-bar{margin-top:26px;background:#005e4a;border-radius:14px;padding:14px 16px 12px;color:#fff;display:flex;flex-wrap:wrap;align-items:center;gap:10px;}
-    .cta-main{font-size:14px;font-weight:700;}
-    .cta-sub{font-size:11px;opacity:.9;}
-    .cta-btn{margin-left:auto;border-radius:999px;border:none;padding:8px 18px;font-size:12px;font-weight:700;background:#ffffff;color:#005e4a;cursor:pointer;}
-    .cta-btn:hover{background:#f0faf7;}
-
-    footer{border-top:1px solid #dde6e2;padding:14px 20px 18px;font-size:11px;color:#777;text-align:center;}
-
-    /* INVENTORY DROPDOWN */
-    .dropdown{position:relative;}
-    .dropdown-toggle{display:inline-block;}
-    .dropdown-menu{
-      position:absolute;
-      top:100%;
-      left:0;
-      min-width:160px;
-      background:#ffffff;
-      border-radius:10px;
-      box-shadow:0 6px 16px rgba(0,0,0,.12);
-      padding:6px 0;
-      display:flex;
-      flex-direction:column;
-      z-index:20;
-      opacity:0;
-      pointer-events:none;
-      transition:opacity 0.2s ease;
-    }
-    .dropdown-menu a{padding:6px 14px;white-space:nowrap;}
-    .dropdown-menu a:hover{background:rgba(0,94,74,.08);}
-    .dropdown.delay-hide .dropdown-menu{
-      opacity:1;
-      pointer-events:auto;
-    }
-
-    @media (max-width:720px){
+    @media (max-width: 720px){
       .nav{flex-direction:column;align-items:flex-start;gap:10px;}
       .nav-links{flex-wrap:wrap;width:100%;}
       .btn-small{width:100%;text-align:center;}
-      .hero{padding:18px 16px;}
     }
 
-    @media (max-width:640px){
-      .cta-bar{flex-direction:column;align-items:flex-start;}
-      .cta-btn{margin-left:0;width:100%;text-align:center;}
+    /* PAGE */
+    main{max-width:1400px;margin:30px auto;padding:0 20px 40px;}
+
+    h1{font-size:28px;font-weight:800;color:#003737;margin-bottom:18px;}
+
+    /* LAYOUT: SIDEBAR + GRID */
+    .layout{display:grid;grid-template-columns:minmax(220px,260px) minmax(0,1fr);gap:20px;align-items:flex-start;margin-top:10px;}
+
+    .filters-sidebar{background:#ffffff;border-radius:8px;border:1px solid #e0ece8;padding:14px 12px;position:sticky;top:110px;}
+    .filters-sidebar h2{font-size:14px;font-weight:700;color:#003737;margin-bottom:10px;}
+    .filter-group{margin-bottom:12px;}
+    .filter-label{font-size:13px;font-weight:600;margin-bottom:4px;display:block;}
+    .filter-select{width:100%;padding:6px 10px;border-radius:6px;border:1px solid #ccc;font-size:13px;background:#fff;}
+
+    .results-wrapper{flex:1;}
+
+    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-top:0;}
+
+    .unit-card{background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.05);border:1px solid #e0ece8;display:flex;flex-direction:column;min-height:270px;position:relative;}
+    .unit-card img{width:100%;height:200px;object-fit:cover;display:block;}
+    .unit-body{padding:6px;flex:1;display:flex;flex-direction:column;justify-content:flex-start;}
+    .unit-title{font-size:13px;font-weight:700;color:#003737;margin-bottom:4px;}
+    .unit-info{font-size:11px;color:#555;margin-bottom:6px;line-height:1.3;}
+
+    .btn-row{display:flex;gap:4px;margin-top:6px;}
+    .btn-green{flex:1;padding:4px 6px;text-align:center;border-radius:6px;background:#005e4a;color:#fff;font-size:11px;font-weight:600;cursor:pointer;}
+    .btn-white{flex:1;padding:4px 6px;text-align:center;border-radius:6px;background:#fff;color:#005e4a;font-size:11px;font-weight:600;border:1px solid #005e4a;cursor:pointer;display:inline-block;}
+    .btn-white:hover{background:#dff6f0;}
+
+    /* SHOW DROPDOWN ONLY ON HOVER */
+    .inv-wrapper:hover .inv-dropdown { display:block !important; }
+    .inv-wrapper:hover .inv-link { background:rgba(0,94,74,0.08); }
+
+    /* STATUS LABELS */
+    .status-tag{
+      position:absolute;
+      top:8px;
+      left:8px;
+      width:64px;
+      height:64px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:16px;
+      font-weight:800;
+      color:#fff;
+      border-radius:50%;
+      text-align:center;
+      line-height:1.1;
+      transform:rotate(-25deg);
+      box-shadow:0 2px 4px rgba(0,0,0,0.35);
+      z-index:1;
+    }
+    .status-tag.available{background:#00c26a;}
+    .status-tag.sold{background:#e00000;}
+
+    /* Keep sidebar pinned left on all breakpoints while allowing grid to shrink gracefully */
+    @media(max-width:1100px){
+      .grid{grid-template-columns:repeat(3,minmax(0,1fr));}
+    }
+    @media(max-width:900px){
+      .grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+    }
+    @media(max-width:720px){
+      .layout{grid-template-columns:minmax(200px,240px) minmax(0,1fr);}      
+    }
+    @media(max-width:540px){
+      .grid{grid-template-columns:1fr;}
     }
   </style>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const dropdown = document.querySelector('.dropdown');
-      if (!dropdown) return;
-
-      let timer;
-
-      dropdown.addEventListener('mouseenter', () => {
-        clearTimeout(timer);
-        dropdown.classList.add('delay-hide');
-      });
-
-      dropdown.addEventListener('mouseleave', () => {
-        timer = setTimeout(() => {
-          dropdown.classList.remove('delay-hide');
-        }, 1000); // 1 second delay after mouse leaves
-      });
-    });
-  </script>
 </head>
 <body>
-  <header>
-    <div class="nav">
-      <div class="logo">
-        <img src="Media/LogoTransparent.png" alt="Company Logo" class="logo-mark" />
-      </div>
-      <nav class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="Applications.html">Applications</a>
-        <a href="Services.html" class="active">Services</a>
-        <div class="dropdown">
-          <a href="Inventory.html" class="dropdown-toggle">Inventory ▾</a>
-          <div class="dropdown-menu">
-            <a href="Units for Sale.html">All units for sale</a>
-          </div>
-        </div>
-        <a href="About us.html">About Us</a>
-        <button class="btn-small" type="button" onclick="window.location.href='tel:2012013551'">Talk to Representative</button>
-      </nav>
+
+<header>
+  <div class="nav">
+    <div class="logo">
+      <a href="index.html"><img src="Media/LogoTransparent.png" alt="Logo" /></a>
     </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="hero-text">
-        <div class="hero-kicker">Services</div>
-        <h1 class="hero-title" style="font-size:28px; font-weight:800; line-height:1.25; margin-bottom:10px;">
-          Complete Commercial Financing Solutions
-        </h1>
-        <p class="hero-sub" style="font-size:15px; line-height:1.55; margin-bottom:14px;">
-          Whether you're an owner‑operator purchasing your first truck or a fleet expanding across multiple states, we provide financing options designed to support real‑world operations.
-        </p>
-        <p class="hero-sub" style="font-size:15px; line-height:1.55; margin-bottom:14px;">
-          Our team works closely with you to evaluate your business needs, the equipment you want to acquire, and the structure that best supports your long‑term cash flow and profitability.
-        </p>
-        <div class="hero-badges" style="margin-top:10px; margin-bottom:14px;">
-          <div class="badge">Fast approvals</div>
-          <div class="badge">Competitive structures</div>
-          <div class="badge">Commercial‑only focus</div>
-          <div class="badge">Customer‑centered support</div>
-        </div>
-        <p class="hero-note" style="font-size:13px; margin-top:10px; color:#444; line-height:1.55;">
-          We understand how important it is to keep your operation moving. Our process is designed to be clear, efficient, and supportive from first contact to final funding.
-        </p>
-      </div>
-      <aside class="hero-side">
-        <h3 style="font-size:16px; font-weight:700; margin-bottom:6px;">Work directly with a representative</h3>
-        <p style="font-size:12px; line-height:1.5; opacity:0.95; margin-bottom:8px;">
-          Our Sales Representative will guide you through the entire process from the initial quote to final funding.
-        </p>
-        <ul class="hero-list" style="margin-top:6px; margin-bottom:10px;">
-          <li>Quick review of your scenario</li>
-          <li>Clear list of required documents</li>
-          <li>Expectations on payments &amp; timelines</li>
-        </ul>
-        <div style="font-size:12px; line-height:1.5; margin-top:6px;">
-          <strong>Call:</strong> <a href="tel:2012013551" style="color:#fff; text-decoration:underline;">201-201-3551</a><br>
-          <strong>Email:</strong>
-          <a href="mailto:info@mntfunding.com?subject=Financing%20Inquiry%20-%20M%26T%20Equipment%20Funding&body=Please%20fill%20the%20details%20below%20and%20send%20us%20this%20email:%0A%0AFull%20name:%0APhone%20number:%0AEmail:%0ABusiness%20name:%0AUSDOT%20(if%20any):%0AYears%20in%20business:%0AUnit%20year/make/model:%0AVIN%20(if%20known):%0APurchase%20price:%0ADown%20payment%20available:%0AHow%20will%20you%20use%20the%20unit?:%0APreferred%20monthly%20payment%20range:%0AAdditional%20notes:" style="color:#fff; text-decoration:underline;">info@mntfunding.com</a>
-        </div>
-      </aside>
-    </section>
-
-    <section>
-      <div class="section-title-row">
-        <div>
-          <h2 class="section-title">What we finance</h2>
-          <p class="section-sub">Commercial-use equipment only. We look at the strength of the asset and the story behind the deal.</p>
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="Applications.html">Applications</a>
+      <a href="Services.html">Services</a>
+      <div class="inv-wrapper" style="position:relative;">
+        <a href="Units for Sale.html" class="inv-link active" style="padding:6px 10px; border-radius:999px;">Inventory ▾</a>
+        <div class="inv-dropdown" style="position:absolute; top:28px; left:0; background:#ffffff; border:1px solid #ddd; border-radius:6px; box-shadow:0 2px 6px rgba(0,0,0,.1); width:180px; overflow:hidden; display:none;">
+          <a href="Units for Sale.html" style="padding:8px 12px; font-size:14px; display:block;">All Units for Sale</a>
         </div>
       </div>
-      <div class="services-grid">
-        <article class="service-card">
-          <div class="service-tag">Core programs</div>
-          <h3 class="service-title">Commercial truck &amp; trailer financing</h3>
-          <p class="service-text">Financing tailored for revenue-producing units, from a single truck to a growing fleet.</p>
-          <ul class="service-bullets">
-            <li>Day cabs, sleepers, straight trucks, box trucks</li>
-            <li>Reefers, dry vans, flatbeds &amp; specialty trailers</li>
-            <li>New and used, from approved dealers and private sellers</li>
-          </ul>
-          <div class="pill-row">
-            <span class="pill">Title-backed financing</span>
-            <span class="pill">Competitive terms</span>
-            <span class="pill">Fast decisions</span>
-          </div>
-        </article>
+      <a href="About us.html">About Us</a>
 
-        <article class="service-card">
-          <div class="service-tag">Structures</div>
-          <h3 class="service-title">Flexible terms &amp; down payments</h3>
-          <p class="service-text">We look for a structure that matches your cash flow and risk profile, not a one-size-fits-all template.</p>
-          <ul class="service-bullets">
-            <li>Different term lengths depending on year and mileage</li>
-            <li>Options for seasonal or heavier first payments</li>
-            <li>Custom structures for fleets and repeat customers</li>
-          </ul>
-          <div class="pill-row">
-            <span class="pill">Monthly payments</span>
-            <span class="pill">Tailored to your route</span>
-          </div>
-        </article>
-
-        <article class="service-card">
-          <div class="service-tag">Support</div>
-          <h3 class="service-title">Title, registration &amp; lien coordination</h3>
-          <p class="service-text">Our team works behind the scenes with dealers, DMVs and titling services so you can focus on your business.</p>
-          <ul class="service-bullets">
-            <li>Title and lien recording coordination</li>
-            <li>Support with registration and plate questions</li>
-            <li>Clear communication when additional documents are required</li>
-          </ul>
-          <div class="pill-row">
-            <span class="pill">Multi-state experience</span>
-            <span class="pill">Dedicated back office</span>
-          </div>
-        </article>
-
-        <article class="service-card">
-          <div class="service-tag">Relationship</div>
-          <h3 class="service-title">Ongoing account support</h3>
-          <p class="service-text">We stay involved for the life of the deal, not just at signing.</p>
-          <ul class="service-bullets">
-            <li>Clear payment expectations from day one</li>
-            <li>Point of contact when questions or issues come up</li>
-            <li>Focus on long-term relationships with good pay history</li>
-          </ul>
-          <div class="pill-row">
-            <span class="pill">Real people, direct lines</span>
-            <span class="pill">Built for repeat business</span>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section>
-      <div class="process-wrapper">
-        <div class="section-title-row">
-          <div>
-            <h2 class="section-title">How the process works</h2>
-            <p class="section-sub">Straightforward steps. Clear expectations. No surprises.</p>
-          </div>
-        </div>
-        <div class="steps-row">
-          <div class="step">
-            <div class="step-head">
-              <div class="step-num">1</div>
-              <div class="step-title">Initial conversation</div>
-            </div>
-            <p class="step-text">You speak with a representative about the unit you want to finance, your experience and your business.</p>
-            <p class="step-note">If the basics fit our programs, we move forward. If not, we tell you honestly.</p>
-          </div>
-
-          <div class="step">
-            <div class="step-head">
-              <div class="step-num">2</div>
-              <div class="step-title">Simple application</div>
-            </div>
-            <p class="step-text">You complete a short application and provide the documents we request so we can review the deal.</p>
-            <p class="step-note">We focus on what we truly need to make a decision.</p>
-          </div>
-
-          <div class="step">
-            <div class="step-head">
-              <div class="step-num">3</div>
-              <div class="step-title">Approval &amp; structure</div>
-            </div>
-            <p class="step-text">If approved, we go over the terms with you so you understand payment, down payment and timing.</p>
-            <p class="step-note">You know what is needed before anything is signed.</p>
-          </div>
-
-          <div class="step">
-            <div class="step-head">
-              <div class="step-num">4</div>
-              <div class="step-title">Funding &amp; after</div>
-            </div>
-            <p class="step-text">We coordinate with the dealer or seller, handle the funding and stay available for any questions afterwards.</p>
-            <p class="step-note">Our goal is for the truck or trailer to be working for you as soon as possible.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta-wrapper">
-      <div class="cta-bar">
-        <div>
-          <div class="cta-main">Not sure if your situation fits?</div>
-          <div class="cta-sub">Share the year, make, model and approximate price of the unit, plus a few lines about your business. We will let you know if it is something we can look at.</div>
-        </div>
-        <button class="cta-btn" type="button" onclick="window.location.href='tel:2012013551'">Talk to Representative</button>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    M&T Equipment Funding LLC &middot; Commercial truck and trailer financing &middot; This page is for information only and does not represent a commitment to lend.
-  </footer>
-
-  <!-- FOOTER BANNER -->
-  <div style="width:100%; background:#003737; color:#ffffff; padding:14px 0; margin-top:40px; overflow:hidden; white-space:nowrap;">
-    <div style="display:inline-block; padding-left:100%; animation:marquee 18s linear infinite; font-size:14px;">
-      📞 Phone: 201-201-3551 &nbsp; | &nbsp; 📧 Email: info@mntfunding.com &nbsp; | &nbsp; 🔗 Instagram: @MTequipmentfunding &nbsp; | &nbsp; 🔗 Facebook: M&T Equipment Funding LLC &nbsp; | &nbsp; © 2025 M&T Equipment Funding LLC — All Rights Reserved &nbsp; | &nbsp; Commercial Truck & Trailer Financing
-    </div>
+      <button class="btn-small" onclick="window.location.href='tel:2012013551'">Talk to Representative</button>
+    </nav>
   </div>
+</header>
 
-  <style>
-    @keyframes marquee {
-      0% { transform: translateX(0%); }
-      100% { transform: translateX(-100%); }
+<script>
+  const inventoryWrapper = document.querySelector('.inv-wrapper');
+  const inventoryDropdown = inventoryWrapper?.querySelector('.inv-dropdown');
+  let dropdownTimer;
+
+  if (inventoryWrapper && inventoryDropdown) {
+    inventoryWrapper.addEventListener('mouseenter', () => {
+      clearTimeout(dropdownTimer);
+      inventoryDropdown.style.display = 'block';
+    });
+
+    inventoryWrapper.addEventListener('mouseleave', () => {
+      dropdownTimer = setTimeout(() => {
+        inventoryDropdown.style.display = 'none';
+      }, 1000);
+    });
+  }
+</script>
+
+<main>
+  <h1>All Units for Sale</h1>
+
+  <!-- LAYOUT: FILTER SIDEBAR + RESULTS -->
+  <div class="layout">
+    <aside class="filters-sidebar">
+      <h2>Filter inventory</h2>
+
+      <div class="filter-group">
+        <label class="filter-label" for="typeFilter">Type:</label>
+        <select id="typeFilter" class="filter-select" onchange="applyFilters()">
+          <option value="all">All</option>
+          <option value="Truck">Truck</option>
+          <option value="Trailer">Trailer</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label" for="brandFilter">Brand:</label>
+        <select id="brandFilter" class="filter-select" onchange="applyFilters()">
+          <option value="all">All</option>
+          <option value="Freightliner">Freightliner</option>
+          <option value="Kenworth">Kenworth</option>
+          <option value="Volvo">Volvo</option>
+          <option value="International">International</option>
+          <option value="Utility">Utility</option>
+          <option value="Vanguard">Vanguard</option>
+          <option value="Peterbilt">Peterbilt</option>
+          <option value="Delucio">Delucio</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label" for="priceFilter">Price:</label>
+        <select id="priceFilter" class="filter-select" onchange="applyFilters()">
+          <option value="all">All</option>
+          <option value="0-25000">USD$ 0 – 25,000</option>
+          <option value="25000-50000">USD$ 25,000 – 50,000</option>
+          <option value="50000-75000">USD$ 50,000 – 75,000</option>
+          <option value="75000-100000">USD$ 75,000 – 100,000</option>
+          <option value="100000-999999">USD$ 100,000+</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label" for="mileageFilter">Mileage:</label>
+        <select id="mileageFilter" class="filter-select" onchange="applyFilters()">
+          <option value="all">All</option>
+          <option value="0-250000">0 – 250,000</option>
+          <option value="250000-500000">250,000 – 500,000</option>
+          <option value="500000-750000">500,000 – 750,000</option>
+          <option value="750000-1000000">750,000 – 1,000,000</option>
+          <option value="1000000-9999999">1,000,000+</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label" for="yearFilter">Year:</label>
+        <select id="yearFilter" class="filter-select" onchange="applyFilters()">
+          <option value="all">All</option>
+          <option value="2021-2025">2021 – 2025</option>
+          <option value="2016-2020">2016 – 2020</option>
+          <option value="2011-2015">2011 – 2015</option>
+          <option value="2000-2010">2000 – 2010</option>
+          <option value="1900-1999">Older</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label class="filter-label" for="colorFilter">Color:</label>
+        <select id="colorFilter" class="filter-select" onchange="applyFilters()">
+          <option value="all">All</option>
+          <option value="White">White</option>
+          <option value="Red">Red</option>
+          <option value="Blue">Blue</option>
+          <option value="Black">Black</option>
+          <option value="Other">Other</option>
+          <option value="Unknown">Unknown</option>
+        </select>
+      </div>
+
+      <div class="filter-group" style="margin-bottom:0;">
+        <label class="filter-label" for="stateFilter">Location State:</label>
+        <select id="stateFilter" class="filter-select" onchange="applyFilters()">
+          <option value="all">All</option>
+          <option value="NY">NY</option>
+          <option value="NJ">NJ</option>
+          <option value="PA">PA</option>
+          <option value="TX">TX</option>
+          <option value="CA">CA</option>
+          <option value="Other">Other</option>
+          <option value="Unknown">Unknown</option>
+        </select>
+      </div>
+
+      <div style="margin-top:18px; display:flex; flex-direction:column; gap:6px;">
+        <button class="btn-small" style="width:100%; justify-content:center;" type="button" id="toolButton">Settings</button>
+      </div>
+    </aside>
+
+    <section class="results-wrapper">
+      <div class="grid" id="unitsGrid">
+        <!-- Inventory cards rendered by JavaScript -->
+      </div>
+      <div id="pagination" style="margin-top:18px; display:flex; gap:8px; flex-wrap:wrap; align-items:center;"></div>
+    </section>
+  </div>
+</main>
+
+<div class="modal-backdrop" id="toolModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.38); align-items:center; justify-content:center; z-index:50; padding:12px;">
+  <div class="modal" style="background:#ffffff; border-radius:12px; width:100%; max-width:360px; padding:18px 16px 16px; box-shadow:0 10px 30px rgba(0,0,0,.18); border:1px solid #e3ece9; font-size:13px;">
+    <h3 style="margin:0 0 6px; font-size:16px; font-weight:800; color:#0b2520;">Admin Access Required</h3>
+    <p style="margin:0 0 10px; font-size:12px; color:#3a4743;">Sign in with <strong>admin/adminmnt</strong> (admin) or <strong>rcortez/cortezmnt</strong> (manager) to edit vehicle listings.</p>
+    <label for="toolUser" style="display:block; font-weight:700; margin-bottom:4px;">Username</label>
+    <input id="toolUser" name="toolUser" type="text" placeholder="Enter username" autocomplete="username" style="width:100%; padding:8px 10px; border-radius:8px; border:1px solid #cfdad7; margin-bottom:10px;" />
+    <label for="toolPass" style="display:block; font-weight:700; margin-bottom:4px;">Password</label>
+    <input id="toolPass" name="toolPass" type="password" placeholder="Enter password" autocomplete="current-password" style="width:100%; padding:8px 10px; border-radius:8px; border:1px solid #cfdad7; margin-bottom:12px;" />
+    <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:4px;">
+      <button class="btn-small" id="toolCancel" type="button" style="border-color:#cfdad7; color:#0b2520;">Cancel</button>
+      <button class="btn-small" id="toolConfirm" type="button">Continue</button>
+    </div>
+    <p style="margin-top:8px; color:#5a6a66; font-size:11px;">Both roles can manage listings. Admins can also create new profiles.</p>
+  </div>
+</div>
+
+
+<script>
+const ITEMS_PER_PAGE = 20;
+const MIN_LISTINGS = 35;
+const storageKey = 'inventoryData';
+const accountsKey = 'inventoryAccounts';
+const sessionKey = 'inventorySession';
+const lockKey = 'inventoryLoginLock';
+const SESSION_TTL_MINUTES = 90;
+const MAX_IMAGES = 10;
+const DEFAULT_IMAGE = 'https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg';
+let currentPage = 1;
+let units = [];
+let filteredUnits = [];
+  const BASE_UNITS = Array.isArray(window.INVENTORY_SEED) ? window.INVENTORY_SEED : [];
+  const BASE_NORMALIZED = BASE_UNITS.map(normalizeUnit);
+
+function hasDiverseInventory(list) {
+  const arr = Array.isArray(list) ? list : [];
+  const uniqueVin = new Set(arr.map(u => (u.vin || '').toUpperCase())).size;
+  const uniqueTitle = new Set(arr.map(u => (u.title || '').toUpperCase())).size;
+  const uniqueTypes = new Set(arr.map(u => (u.type || '').toLowerCase())).size;
+  return arr.length >= MIN_LISTINGS && uniqueVin >= MIN_LISTINGS && uniqueTitle >= MIN_LISTINGS && uniqueTypes.size > 1;
+}
+
+function ensureMinimumUnits(list) {
+  const result = Array.isArray(list) ? list.slice() : [];
+  const source = BASE_NORMALIZED.length ? BASE_NORMALIZED : result;
+  let idx = 0;
+
+  while (result.length < MIN_LISTINGS && source.length) {
+    const template = source[idx % source.length] || {};
+    const vinSuffix = result.length + 1;
+    result.push({ ...template, vin: `${template.vin || 'VIN'}-SIM${vinSuffix}` });
+    idx++;
+  }
+
+  return result;
+}
+
+function hashPassword(pass) {
+  return 'hash:' + btoa(pass || '');
+}
+
+function normalizeAccount(acc) {
+  if (!acc || !acc.user) return null;
+  const hashed = (acc.pass || '').startsWith('hash:') ? acc.pass : hashPassword(acc.pass || '');
+  return { user: acc.user, pass: hashed, role: acc.role || 'manager' };
+}
+
+function passwordsMatch(account, input) {
+  return account.pass === hashPassword(input);
+}
+
+function ensureAccounts() {
+  let accounts = [];
+  const saved = localStorage.getItem(accountsKey);
+  if (saved) {
+    try {
+      const parsed = JSON.parse(saved);
+      if (Array.isArray(parsed)) accounts = parsed.map(normalizeAccount).filter(Boolean);
+    } catch (e) {
+      console.warn('Could not parse saved accounts');
     }
-  </style>
+  }
+  [
+    { user: 'admin', pass: 'adminmnt', role: 'admin' },
+    { user: 'rcortez', pass: 'cortezmnt', role: 'manager' }
+  ].forEach(base => {
+    const normalized = normalizeAccount(base);
+    const idx = accounts.findIndex(a => a.user === normalized.user);
+    if (idx >= 0) {
+      accounts[idx] = { ...normalized, ...accounts[idx] };
+    } else {
+      accounts.push(normalized);
+    }
+  });
+  localStorage.setItem(accountsKey, JSON.stringify(accounts));
+  return accounts;
+}
+
+function getLock() {
+  try {
+    return JSON.parse(localStorage.getItem(lockKey)) || { attempts: 0, lockedUntil: 0 };
+  } catch (e) {
+    return { attempts: 0, lockedUntil: 0 };
+  }
+}
+
+function saveLock(data) {
+  localStorage.setItem(lockKey, JSON.stringify(data));
+}
+
+function resetLock() {
+  saveLock({ attempts: 0, lockedUntil: 0 });
+}
+
+function recordFailedAttempt() {
+  const lock = getLock();
+  lock.attempts += 1;
+  if (lock.attempts >= 5) {
+    lock.lockedUntil = Date.now() + (15 * 60 * 1000);
+    lock.attempts = 0;
+  }
+  saveLock(lock);
+}
+
+function canAttempt() {
+  const lock = getLock();
+  if (lock.lockedUntil && Date.now() < lock.lockedUntil) return false;
+  return true;
+}
+
+function setSession(account) {
+  const expires = Date.now() + SESSION_TTL_MINUTES * 60 * 1000;
+  localStorage.setItem(sessionKey, JSON.stringify({ user: account.user, role: account.role, expires }));
+}
+
+function normalizeImages(unit) {
+  const fromArray = Array.isArray(unit.images) ? unit.images.filter(Boolean) : [];
+  const merged = [...new Set([unit.image, ...fromArray].filter(Boolean))];
+  return merged.slice(0, MAX_IMAGES);
+}
+
+function deriveMake(title = '') {
+  const parts = title.split(' ').filter(Boolean);
+  if (parts.length < 2) return '';
+  const maybeYear = parts[0];
+  const startIdx = /(19|20)\d{2}/.test(maybeYear) ? 1 : 0;
+  return parts[startIdx] || '';
+}
+
+function deriveModel(title = '', make = '') {
+  const cleaned = title.replace(make, '').trim();
+  const pieces = cleaned.split(' ').filter(Boolean);
+  const noYear = pieces.filter(p => !/(19|20)\d{2}/.test(p));
+  return noYear.slice(1).join(' ') || noYear.join(' ') || '';
+}
+
+function normalizeUnit(unit) {
+  const images = normalizeImages(unit || {});
+  const title = unit?.title || 'Unit';
+  const titleYear = (title.match(/(19|20)\d{2}/) || [])[0];
+  const year = Number(unit?.year) || Number(titleYear) || '';
+  const make = unit?.brand || unit?.make || deriveMake(title) || 'Unknown';
+  const model = unit?.model || deriveModel(title, make) || 'Not specified';
+  const desc = unit?.description || `${title} — well maintained, clean title, and ready for your next haul.`;
+  const defaultFeatures = ['Clean title', 'DOT ready', 'Fresh PM service', 'Warranty options available', 'Maintenance records on file', 'Financing available'];
+  const features = Array.isArray(unit?.features) && unit.features.length ? unit.features : defaultFeatures;
+
+  return {
+    title,
+    vin: unit?.vin || '',
+    type: unit?.type || 'Truck',
+    brand: unit?.brand || make || 'Unknown',
+    make,
+    model,
+    status: unit?.status || 'Available',
+    price: Number(unit?.price) || 0,
+    mileage: Number(unit?.mileage) || 0,
+    state: unit?.state || 'Unknown',
+    color: unit?.color || 'Unknown',
+    year,
+    engine: unit?.engine || 'Not specified',
+    transmission: unit?.transmission || 'Not specified',
+    condition: unit?.condition || 'Used',
+    location: unit?.location || (unit?.state ? `${unit.state} yard` : 'Available nationwide'),
+    phone: unit?.phone || '000-000-0000',
+    description: desc,
+    features,
+    images: images.length ? images : [DEFAULT_IMAGE],
+    image: images[0] || DEFAULT_IMAGE
+  };
+}
+
+function defaultUnits() {
+  return ensureMinimumUnits(BASE_UNITS.map(normalizeUnit));
+}
+
+function loadUnits() {
+  try {
+    const saved = localStorage.getItem(storageKey);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      if (Array.isArray(parsed) && parsed.length) {
+        const normalizedSaved = ensureMinimumUnits(parsed.map(normalizeUnit));
+        if (hasDiverseInventory(normalizedSaved)) {
+          localStorage.setItem(storageKey, JSON.stringify(normalizedSaved));
+          return normalizedSaved;
+        }
+      }
+    }
+  } catch (e) {
+    console.warn('Unable to load saved inventory, using defaults');
+  }
+  console.warn('Reseeding inventory with diverse demo data');
+  const seeded = ensureMinimumUnits(BASE_NORMALIZED);
+  localStorage.setItem(storageKey, JSON.stringify(seeded));
+  return seeded;
+}
+
+function formatNumber(n) {
+  return Number(n || 0).toLocaleString('en-US');
+}
+
+function buildCard(unit) {
+  const card = document.createElement('div');
+  card.className = 'unit-card';
+  card.dataset.type = unit.type;
+  card.dataset.brand = unit.brand;
+  card.dataset.price = unit.price;
+  card.dataset.mileage = unit.mileage;
+  card.dataset.color = unit.color || 'Unknown';
+  card.dataset.state = unit.state || 'Unknown';
+  card.dataset.vin = unit.vin || '';
+  card.dataset.phone = unit.phone || '000-000-0000';
+  card.dataset.title = unit.title || 'Unit';
+  card.dataset.make = unit.make || unit.brand || 'Unknown';
+  card.dataset.model = unit.model || 'Not specified';
+  card.dataset.year = unit.year || '';
+
+  const statusClass = unit.status && unit.status.toLowerCase() === 'sold' ? 'sold' : 'available';
+  const hero = (unit.images && unit.images[0]) || DEFAULT_IMAGE;
+
+  card.innerHTML = `
+    <div class="status-tag ${statusClass}">${unit.status || 'Available'}</div>
+    <img src="${hero}" alt="${unit.title}" />
+    <div class="unit-body">
+      <div class="unit-title">${unit.title}</div>
+      <div class="unit-info">
+        Year: ${unit.year || 'Unknown'}<br>
+        Make: ${unit.make || unit.brand || 'Unknown'}<br>
+        Model: ${unit.model || 'Not specified'}<br>
+        Mileage: ${formatNumber(unit.mileage)}<br>
+        Price: USD$ ${formatNumber(unit.price)}<br>
+        Location: ${unit.location || unit.state || 'Available nationwide'}
+      </div>
+      <div class="btn-row">
+        <div class="btn-green email-btn">Contact us</div>
+        <a class="btn-white" href="unit-detail.html?vin=${encodeURIComponent(unit.vin)}">See Details</a>
+      </div>
+    </div>
+  `;
+  return card;
+}
+
+function wireEmailButtons() {
+  document.querySelectorAll('.btn-green.email-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const card = btn.closest('.unit-card');
+      const title = card?.dataset.title || 'Unit';
+      const vin = card?.dataset.vin || '';
+      const phone = card?.dataset.phone || '000-000-0000';
+      const subject = `Interest in ${title} (${vin})`;
+      const body = `Hello,
+
+I am interested in the following unit:
+
+${title}
+VIN: ${vin}
+Phone: ${phone}
+
+Please share more details and availability.
+
+Thank you,
+[Your Name]`;
+      window.location.href = `mailto:rcortez@mntfunding.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    });
+  });
+}
+
+function renderPagination(totalPages) {
+  const container = document.getElementById('pagination');
+  if (!container) return;
+  container.innerHTML = '';
+  if (totalPages <= 1) return;
+
+  const info = document.createElement('span');
+  info.style.fontSize = '12px';
+  info.textContent = `Page ${currentPage} of ${totalPages}`;
+  container.appendChild(info);
+
+  const prev = document.createElement('button');
+  prev.textContent = 'Prev';
+  prev.className = 'btn-small';
+  prev.disabled = currentPage === 1;
+  prev.style.padding = '6px 12px';
+  prev.onclick = () => { currentPage--; renderUnits(); };
+  container.appendChild(prev);
+
+  const next = document.createElement('button');
+  next.textContent = 'Next';
+  next.className = 'btn-small';
+  next.disabled = currentPage === totalPages;
+  next.style.padding = '6px 12px';
+  next.onclick = () => { currentPage++; renderUnits(); };
+  container.appendChild(next);
+}
+
+function renderUnits() {
+  const grid = document.getElementById('unitsGrid');
+  if (!grid) return;
+
+  const start = (currentPage - 1) * ITEMS_PER_PAGE;
+  const end = start + ITEMS_PER_PAGE;
+  const totalPages = Math.max(1, Math.ceil(filteredUnits.length / ITEMS_PER_PAGE));
+  if (currentPage > totalPages) currentPage = totalPages;
+
+  grid.innerHTML = '';
+
+  const pageUnits = filteredUnits.slice(start, end);
+  if (!pageUnits.length) {
+    grid.innerHTML = '<p style="grid-column:1/-1;font-size:13px;color:#555;">No units match these filters right now.</p>';
+  } else {
+    pageUnits.forEach(unit => grid.appendChild(buildCard(unit)));
+  }
+
+  wireEmailButtons();
+  renderPagination(totalPages);
+}
+
+function applyFilters() {
+  const typeSel = document.getElementById('typeFilter')?.value || 'all';
+  const brandSel = document.getElementById('brandFilter')?.value || 'all';
+  const priceSel = document.getElementById('priceFilter')?.value || 'all';
+  const mileageSel = document.getElementById('mileageFilter')?.value || 'all';
+  const yearSel = document.getElementById('yearFilter')?.value || 'all';
+  const colorSel = document.getElementById('colorFilter')?.value || 'all';
+  const stateSel = document.getElementById('stateFilter')?.value || 'all';
+
+  filteredUnits = units.filter(unit => {
+    const price = Number(unit.price) || 0;
+    const mileage = Number(unit.mileage) || 0;
+    const year = Number(unit.year) || 0;
+
+    if (typeSel !== 'all' && unit.type !== typeSel) return false;
+    if (brandSel !== 'all' && unit.brand !== brandSel) return false;
+    if (colorSel !== 'all' && unit.color !== colorSel) return false;
+    if (stateSel !== 'all' && unit.state !== stateSel) return false;
+
+    if (priceSel !== 'all') {
+      const [min, max] = priceSel.split('-').map(Number);
+      if (price < min || price > max) return false;
+    }
+
+    if (mileageSel !== 'all') {
+      const [mMin, mMax] = mileageSel.split('-').map(Number);
+      if (mileage < mMin || mileage > mMax) return false;
+    }
+
+    if (yearSel !== 'all') {
+      const [yMin, yMax] = yearSel.split('-').map(Number);
+      if (year < yMin || year > yMax) return false;
+    }
+
+    return true;
+  });
+
+  currentPage = 1;
+  renderUnits();
+}
+
+function init() {
+  ensureAccounts();
+  units = loadUnits();
+  filteredUnits = units.slice();
+  applyFilters();
+
+  const modal = document.getElementById('toolModal');
+  const toolBtn = document.getElementById('toolButton');
+  const cancelBtn = document.getElementById('toolCancel');
+  const confirmBtn = document.getElementById('toolConfirm');
+  const userInput = document.getElementById('toolUser');
+  const passInput = document.getElementById('toolPass');
+
+  function openModal() { modal.style.display = 'flex'; userInput.focus(); }
+  function closeModal() { modal.style.display = 'none'; userInput.value = ''; passInput.value = ''; }
+  function handleLogin() {
+    if (!canAttempt()) {
+      alert('Too many attempts. Please wait a few minutes before trying again.');
+      return;
+    }
+    const accounts = ensureAccounts();
+    const match = accounts.find(acc => acc.user === userInput.value.trim() && passwordsMatch(acc, passInput.value.trim()));
+    if (match) {
+      resetLock();
+      setSession(match);
+      window.location.href = 'control-panel.html';
+    } else {
+      recordFailedAttempt();
+      alert('Invalid credentials');
+    }
+  }
+
+  toolBtn?.addEventListener('click', openModal);
+  cancelBtn?.addEventListener('click', closeModal);
+  confirmBtn?.addEventListener('click', handleLogin);
+  [userInput, passInput].forEach(input => input?.addEventListener('keyup', (e) => { if (e.key === 'Enter') handleLogin(); }));
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
+</script>
+
+
 </body>
 </html>
