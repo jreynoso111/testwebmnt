@@ -25,7 +25,7 @@
     header{background:#ffffff;box-shadow:0 2px 6px rgba(0,0,0,.08);position:sticky;top:0;z-index:200;}
     .nav{max-width:1400px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 20px;}
     .logo{display:flex;align-items:center;gap:10px;}
-    .logo img{width:120px;height:auto;}
+    .logo img{height:72px;width:auto;object-fit:contain;}
     .nav-links{display:flex;align-items:center;gap:18px;font-size:14px;}
     .nav-links a{padding:6px 10px;border-radius:999px;}
     .nav-links a:hover{background:rgba(0,94,74,.08);} 
@@ -46,9 +46,9 @@
     h1{font-size:28px;font-weight:800;color:#003737;margin-bottom:18px;}
 
     /* LAYOUT: SIDEBAR + GRID */
-    .layout{display:flex;gap:20px;align-items:flex-start;margin-top:10px;}
+    .layout{display:grid;grid-template-columns:minmax(220px,260px) minmax(0,1fr);gap:20px;align-items:flex-start;margin-top:10px;}
 
-    .filters-sidebar{width:230px;background:#ffffff;border-radius:8px;border:1px solid #e0ece8;padding:14px 12px;position:sticky;top:110px;}
+    .filters-sidebar{background:#ffffff;border-radius:8px;border:1px solid #e0ece8;padding:14px 12px;position:sticky;top:110px;}
     .filters-sidebar h2{font-size:14px;font-weight:700;color:#003737;margin-bottom:10px;}
     .filter-group{margin-bottom:12px;}
     .filter-label{font-size:13px;font-weight:600;margin-bottom:4px;display:block;}
@@ -56,7 +56,7 @@
 
     .results-wrapper{flex:1;}
 
-    .grid{display:grid;grid-template-columns:repeat(4, 1fr);gap:20px;margin-top:0;}
+    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-top:0;}
 
     .unit-card{background:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 2px 6px rgba(0,0,0,.05);border:1px solid #e0ece8;display:flex;flex-direction:column;min-height:270px;position:relative;}
     .unit-card img{width:100%;height:200px;object-fit:cover;display:block;}
@@ -95,6 +95,20 @@
     }
     .status-tag.available{background:#00c26a;}
     .status-tag.sold{background:#e00000;}
+
+    /* Keep sidebar pinned left on all breakpoints while allowing grid to shrink gracefully */
+    @media(max-width:1100px){
+      .grid{grid-template-columns:repeat(3,minmax(0,1fr));}
+    }
+    @media(max-width:900px){
+      .grid{grid-template-columns:repeat(2,minmax(0,1fr));}
+    }
+    @media(max-width:720px){
+      .layout{grid-template-columns:minmax(200px,240px) minmax(0,1fr);}      
+    }
+    @media(max-width:540px){
+      .grid{grid-template-columns:1fr;}
+    }
   </style>
 </head>
 <body>
@@ -102,25 +116,43 @@
 <header>
   <div class="nav">
     <div class="logo">
-      <img src="Media/Logo White - Copy.png" alt="Logo" />
+      <a href="index.html"><img src="Media/LogoTransparent.png" alt="Logo" /></a>
     </div>
     <nav class="nav-links">
-      <a href="Home.html">Home</a>
+      <a href="index.html">Home</a>
       <a href="Applications.html">Applications</a>
       <a href="Services.html">Services</a>
-
       <div class="inv-wrapper" style="position:relative;">
-        <a href="Inventory.html" class="inv-link" style="padding:6px 10px; border-radius:999px;">Inventory ▾</a>
+        <a href="Units for Sale.html" class="inv-link active" style="padding:6px 10px; border-radius:999px;">Inventory ▾</a>
         <div class="inv-dropdown" style="position:absolute; top:28px; left:0; background:#ffffff; border:1px solid #ddd; border-radius:6px; box-shadow:0 2px 6px rgba(0,0,0,.1); width:180px; overflow:hidden; display:none;">
-          <a href="AllUnitsForSale.html" style="padding:8px 12px; font-size:14px; display:block;">All Units for Sale</a>
+          <a href="Units for Sale.html" style="padding:8px 12px; font-size:14px; display:block;">All Units for Sale</a>
         </div>
       </div>
-
       <a href="About us.html">About Us</a>
+
       <button class="btn-small" onclick="window.location.href='tel:2012013551'">Talk to Representative</button>
     </nav>
   </div>
 </header>
+
+<script>
+  const inventoryWrapper = document.querySelector('.inv-wrapper');
+  const inventoryDropdown = inventoryWrapper?.querySelector('.inv-dropdown');
+  let dropdownTimer;
+
+  if (inventoryWrapper && inventoryDropdown) {
+    inventoryWrapper.addEventListener('mouseenter', () => {
+      clearTimeout(dropdownTimer);
+      inventoryDropdown.style.display = 'block';
+    });
+
+    inventoryWrapper.addEventListener('mouseleave', () => {
+      dropdownTimer = setTimeout(() => {
+        inventoryDropdown.style.display = 'none';
+      }, 1000);
+    });
+  }
+</script>
 
 <main>
   <h1>All Units for Sale</h1>
@@ -179,6 +211,18 @@
       </div>
 
       <div class="filter-group">
+        <label class="filter-label" for="yearFilter">Year:</label>
+        <select id="yearFilter" class="filter-select" onchange="applyFilters()">
+          <option value="all">All</option>
+          <option value="2021-2025">2021 – 2025</option>
+          <option value="2016-2020">2016 – 2020</option>
+          <option value="2011-2015">2011 – 2015</option>
+          <option value="2000-2010">2000 – 2010</option>
+          <option value="1900-1999">Older</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
         <label class="filter-label" for="colorFilter">Color:</label>
         <select id="colorFilter" class="filter-select" onchange="applyFilters()">
           <option value="all">All</option>
@@ -207,7 +251,6 @@
 
       <div style="margin-top:18px; display:flex; flex-direction:column; gap:6px;">
         <button class="btn-small" style="width:100%; justify-content:center;" type="button" id="toolButton">Settings</button>
-        <div style="font-size:11px; color:#4c5f5a; line-height:1.4;">Restricted access. Sign in to update or remove listings shown on this page.</div>
       </div>
     </aside>
 
@@ -236,57 +279,204 @@
   </div>
 </div>
 
+
 <script>
 const ITEMS_PER_PAGE = 20;
+const MIN_LISTINGS = 35;
+const storageKey = 'inventoryData';
+const accountsKey = 'inventoryAccounts';
+const sessionKey = 'inventorySession';
+const lockKey = 'inventoryLoginLock';
+const SESSION_TTL_MINUTES = 90;
+const MAX_IMAGES = 10;
+const DEFAULT_IMAGE = 'https://imagescdn.dealercarsearch.com/Media/22484/23001914/638930206131273528.jpg';
 let currentPage = 1;
 let units = [];
 let filteredUnits = [];
+  const BASE_UNITS = Array.isArray(window.INVENTORY_SEED) ? window.INVENTORY_SEED : [];
+  const BASE_NORMALIZED = BASE_UNITS.map(normalizeUnit);
 
-const BASE_UNITS = Array.isArray(window.INVENTORY_SEED) ? window.INVENTORY_SEED : [];
+function hasDiverseInventory(list) {
+  const arr = Array.isArray(list) ? list : [];
+  const uniqueVin = new Set(arr.map(u => (u.vin || '').toUpperCase())).size;
+  const uniqueTitle = new Set(arr.map(u => (u.title || '').toUpperCase())).size;
+  const uniqueTypes = new Set(arr.map(u => (u.type || '').toLowerCase())).size;
+  return arr.length >= MIN_LISTINGS && uniqueVin >= MIN_LISTINGS && uniqueTitle >= MIN_LISTINGS && uniqueTypes.size > 1;
+}
 
-function defaultUnits() {
-  return BASE_UNITS.slice();
+function ensureMinimumUnits(list) {
+  const result = Array.isArray(list) ? list.slice() : [];
+  const source = BASE_NORMALIZED.length ? BASE_NORMALIZED : result;
+  let idx = 0;
+
+  while (result.length < MIN_LISTINGS && source.length) {
+    const template = source[idx % source.length] || {};
+    const vinSuffix = result.length + 1;
+    result.push({ ...template, vin: `${template.vin || 'VIN'}-SIM${vinSuffix}` });
+    idx++;
+  }
+
+  return result;
+}
+
+function hashPassword(pass) {
+  return 'hash:' + btoa(pass || '');
+}
+
+function normalizeAccount(acc) {
+  if (!acc || !acc.user) return null;
+  const hashed = (acc.pass || '').startsWith('hash:') ? acc.pass : hashPassword(acc.pass || '');
+  return { user: acc.user, pass: hashed, role: acc.role || 'manager' };
+}
+
+function passwordsMatch(account, input) {
+  return account.pass === hashPassword(input);
 }
 
 function ensureAccounts() {
-  const defaults = [
-    { user: 'admin', pass: 'adminmnt', role: 'admin' },
-    { user: 'rcortez', pass: 'cortezmnt', role: 'manager' }
-  ];
-  const saved = localStorage.getItem('inventoryAccounts');
   let accounts = [];
+  const saved = localStorage.getItem(accountsKey);
   if (saved) {
     try {
       const parsed = JSON.parse(saved);
-      if (Array.isArray(parsed)) accounts = parsed;
+      if (Array.isArray(parsed)) accounts = parsed.map(normalizeAccount).filter(Boolean);
     } catch (e) {
       console.warn('Could not parse saved accounts');
     }
   }
-  defaults.forEach(base => {
-    const idx = accounts.findIndex(a => a.user === base.user);
+  [
+    { user: 'admin', pass: 'adminmnt', role: 'admin' },
+    { user: 'rcortez', pass: 'cortezmnt', role: 'manager' }
+  ].forEach(base => {
+    const normalized = normalizeAccount(base);
+    const idx = accounts.findIndex(a => a.user === normalized.user);
     if (idx >= 0) {
-      accounts[idx] = { ...accounts[idx], ...base };
+      accounts[idx] = { ...normalized, ...accounts[idx] };
     } else {
-      accounts.push({ ...base });
+      accounts.push(normalized);
     }
   });
-  localStorage.setItem('inventoryAccounts', JSON.stringify(accounts));
+  localStorage.setItem(accountsKey, JSON.stringify(accounts));
   return accounts;
+}
+
+function getLock() {
+  try {
+    return JSON.parse(localStorage.getItem(lockKey)) || { attempts: 0, lockedUntil: 0 };
+  } catch (e) {
+    return { attempts: 0, lockedUntil: 0 };
+  }
+}
+
+function saveLock(data) {
+  localStorage.setItem(lockKey, JSON.stringify(data));
+}
+
+function resetLock() {
+  saveLock({ attempts: 0, lockedUntil: 0 });
+}
+
+function recordFailedAttempt() {
+  const lock = getLock();
+  lock.attempts += 1;
+  if (lock.attempts >= 5) {
+    lock.lockedUntil = Date.now() + (15 * 60 * 1000);
+    lock.attempts = 0;
+  }
+  saveLock(lock);
+}
+
+function canAttempt() {
+  const lock = getLock();
+  if (lock.lockedUntil && Date.now() < lock.lockedUntil) return false;
+  return true;
+}
+
+function setSession(account) {
+  const expires = Date.now() + SESSION_TTL_MINUTES * 60 * 1000;
+  localStorage.setItem(sessionKey, JSON.stringify({ user: account.user, role: account.role, expires }));
+}
+
+function normalizeImages(unit) {
+  const fromArray = Array.isArray(unit.images) ? unit.images.filter(Boolean) : [];
+  const merged = [...new Set([unit.image, ...fromArray].filter(Boolean))];
+  return merged.slice(0, MAX_IMAGES);
+}
+
+function deriveMake(title = '') {
+  const parts = title.split(' ').filter(Boolean);
+  if (parts.length < 2) return '';
+  const maybeYear = parts[0];
+  const startIdx = /(19|20)\d{2}/.test(maybeYear) ? 1 : 0;
+  return parts[startIdx] || '';
+}
+
+function deriveModel(title = '', make = '') {
+  const cleaned = title.replace(make, '').trim();
+  const pieces = cleaned.split(' ').filter(Boolean);
+  const noYear = pieces.filter(p => !/(19|20)\d{2}/.test(p));
+  return noYear.slice(1).join(' ') || noYear.join(' ') || '';
+}
+
+function normalizeUnit(unit) {
+  const images = normalizeImages(unit || {});
+  const title = unit?.title || 'Unit';
+  const titleYear = (title.match(/(19|20)\d{2}/) || [])[0];
+  const year = Number(unit?.year) || Number(titleYear) || '';
+  const make = unit?.brand || unit?.make || deriveMake(title) || 'Unknown';
+  const model = unit?.model || deriveModel(title, make) || 'Not specified';
+  const desc = unit?.description || `${title} — well maintained, clean title, and ready for your next haul.`;
+  const defaultFeatures = ['Clean title', 'DOT ready', 'Fresh PM service', 'Warranty options available', 'Maintenance records on file', 'Financing available'];
+  const features = Array.isArray(unit?.features) && unit.features.length ? unit.features : defaultFeatures;
+
+  return {
+    title,
+    vin: unit?.vin || '',
+    type: unit?.type || 'Truck',
+    brand: unit?.brand || make || 'Unknown',
+    make,
+    model,
+    status: unit?.status || 'Available',
+    price: Number(unit?.price) || 0,
+    mileage: Number(unit?.mileage) || 0,
+    state: unit?.state || 'Unknown',
+    color: unit?.color || 'Unknown',
+    year,
+    engine: unit?.engine || 'Not specified',
+    transmission: unit?.transmission || 'Not specified',
+    condition: unit?.condition || 'Used',
+    location: unit?.location || (unit?.state ? `${unit.state} yard` : 'Available nationwide'),
+    phone: unit?.phone || '000-000-0000',
+    description: desc,
+    features,
+    images: images.length ? images : [DEFAULT_IMAGE],
+    image: images[0] || DEFAULT_IMAGE
+  };
+}
+
+function defaultUnits() {
+  return ensureMinimumUnits(BASE_UNITS.map(normalizeUnit));
 }
 
 function loadUnits() {
   try {
-    const saved = localStorage.getItem('inventoryData');
+    const saved = localStorage.getItem(storageKey);
     if (saved) {
       const parsed = JSON.parse(saved);
-      if (Array.isArray(parsed) && parsed.length) return parsed;
+      if (Array.isArray(parsed) && parsed.length) {
+        const normalizedSaved = ensureMinimumUnits(parsed.map(normalizeUnit));
+        if (hasDiverseInventory(normalizedSaved)) {
+          localStorage.setItem(storageKey, JSON.stringify(normalizedSaved));
+          return normalizedSaved;
+        }
+      }
     }
   } catch (e) {
     console.warn('Unable to load saved inventory, using defaults');
   }
-  const seeded = defaultUnits();
-  localStorage.setItem('inventoryData', JSON.stringify(seeded));
+  console.warn('Reseeding inventory with diverse demo data');
+  const seeded = ensureMinimumUnits(BASE_NORMALIZED);
+  localStorage.setItem(storageKey, JSON.stringify(seeded));
   return seeded;
 }
 
@@ -303,20 +493,28 @@ function buildCard(unit) {
   card.dataset.mileage = unit.mileage;
   card.dataset.color = unit.color || 'Unknown';
   card.dataset.state = unit.state || 'Unknown';
+  card.dataset.vin = unit.vin || '';
+  card.dataset.phone = unit.phone || '000-000-0000';
+  card.dataset.title = unit.title || 'Unit';
+  card.dataset.make = unit.make || unit.brand || 'Unknown';
+  card.dataset.model = unit.model || 'Not specified';
+  card.dataset.year = unit.year || '';
 
   const statusClass = unit.status && unit.status.toLowerCase() === 'sold' ? 'sold' : 'available';
+  const hero = (unit.images && unit.images[0]) || DEFAULT_IMAGE;
 
   card.innerHTML = `
     <div class="status-tag ${statusClass}">${unit.status || 'Available'}</div>
-    <img src="${unit.image}" alt="${unit.title}" />
+    <img src="${hero}" alt="${unit.title}" />
     <div class="unit-body">
       <div class="unit-title">${unit.title}</div>
       <div class="unit-info">
-        VIN: ${unit.vin}<br>
+        Year: ${unit.year || 'Unknown'}<br>
+        Make: ${unit.make || unit.brand || 'Unknown'}<br>
+        Model: ${unit.model || 'Not specified'}<br>
         Mileage: ${formatNumber(unit.mileage)}<br>
-        Value: USD$ ${formatNumber(unit.price)}<br>
-        Color: ${unit.color || 'Unknown'}<br>
-        State: ${unit.state || 'Unknown'}
+        Price: USD$ ${formatNumber(unit.price)}<br>
+        Location: ${unit.location || unit.state || 'Available nationwide'}
       </div>
       <div class="btn-row">
         <div class="btn-green email-btn">Contact us</div>
@@ -331,11 +529,22 @@ function wireEmailButtons() {
   document.querySelectorAll('.btn-green.email-btn').forEach(btn => {
     btn.addEventListener('click', () => {
       const card = btn.closest('.unit-card');
-      const title = card.querySelector('.unit-title')?.textContent?.trim() || 'Unit';
-      const vinLine = card.querySelector('.unit-info')?.innerText?.split('\n').find(line => line.includes('VIN:')) || '';
-      const vin = vinLine.replace('VIN:', '').trim();
+      const title = card?.dataset.title || 'Unit';
+      const vin = card?.dataset.vin || '';
+      const phone = card?.dataset.phone || '000-000-0000';
       const subject = `Interest in ${title} (${vin})`;
-      const body = `Hello Roy,\n\nI am interested in the following unit:\n\n${title}\nVIN: ${vin}\n\nPlease let me know more details about this unit and financing options.\n\nThank you,\n[Your Name]\n[Your Phone Number]`;
+      const body = `Hello,
+
+I am interested in the following unit:
+
+${title}
+VIN: ${vin}
+Phone: ${phone}
+
+Please share more details and availability.
+
+Thank you,
+[Your Name]`;
       window.location.href = `mailto:rcortez@mntfunding.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     });
   });
@@ -396,12 +605,14 @@ function applyFilters() {
   const brandSel = document.getElementById('brandFilter')?.value || 'all';
   const priceSel = document.getElementById('priceFilter')?.value || 'all';
   const mileageSel = document.getElementById('mileageFilter')?.value || 'all';
+  const yearSel = document.getElementById('yearFilter')?.value || 'all';
   const colorSel = document.getElementById('colorFilter')?.value || 'all';
   const stateSel = document.getElementById('stateFilter')?.value || 'all';
 
   filteredUnits = units.filter(unit => {
     const price = Number(unit.price) || 0;
     const mileage = Number(unit.mileage) || 0;
+    const year = Number(unit.year) || 0;
 
     if (typeSel !== 'all' && unit.type !== typeSel) return false;
     if (brandSel !== 'all' && unit.brand !== brandSel) return false;
@@ -416,6 +627,11 @@ function applyFilters() {
     if (mileageSel !== 'all') {
       const [mMin, mMax] = mileageSel.split('-').map(Number);
       if (mileage < mMin || mileage > mMax) return false;
+    }
+
+    if (yearSel !== 'all') {
+      const [yMin, yMax] = yearSel.split('-').map(Number);
+      if (year < yMin || year > yMax) return false;
     }
 
     return true;
@@ -441,14 +657,18 @@ function init() {
   function openModal() { modal.style.display = 'flex'; userInput.focus(); }
   function closeModal() { modal.style.display = 'none'; userInput.value = ''; passInput.value = ''; }
   function handleLogin() {
-    const accounts = JSON.parse(localStorage.getItem('inventoryAccounts') || '[]');
-    const match = accounts.find(acc => acc.user === userInput.value.trim() && acc.pass === passInput.value.trim());
+    if (!canAttempt()) {
+      alert('Too many attempts. Please wait a few minutes before trying again.');
+      return;
+    }
+    const accounts = ensureAccounts();
+    const match = accounts.find(acc => acc.user === userInput.value.trim() && passwordsMatch(acc, passInput.value.trim()));
     if (match) {
-      localStorage.setItem('inventoryAdminAuth', 'true');
-      localStorage.setItem('inventoryAuthUser', match.user);
-      localStorage.setItem('inventoryAuthRole', match.role);
+      resetLock();
+      setSession(match);
       window.location.href = 'control-panel.html';
     } else {
+      recordFailedAttempt();
       alert('Invalid credentials');
     }
   }
@@ -465,6 +685,7 @@ if (document.readyState === 'loading') {
   init();
 }
 </script>
+
 
 </body>
 </html>
